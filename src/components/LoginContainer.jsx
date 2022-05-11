@@ -9,6 +9,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
 import TripleSChatLogo from "../assets/TripleS-final-logo.png";
 
 export default function LoginContainer() {
@@ -55,9 +56,11 @@ export default function LoginContainer() {
             </Button>
           </GridItem>
           <GridItem colSpan={2}>
-            <Button variant="ghost" colorScheme="purple" size="md" w="full">
-              Sign Up Instead
-            </Button>
+            <Link to="/signup">
+              <Button variant="ghost" colorScheme="purple" size="md" w="full">
+                Sign Up Instead
+              </Button>
+            </Link>
           </GridItem>
         </SimpleGrid>
       </VStack>
