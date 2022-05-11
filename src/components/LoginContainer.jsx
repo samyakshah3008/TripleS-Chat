@@ -51,9 +51,11 @@ export default function LoginContainer() {
             </Button>
           </GridItem>
           <GridItem colSpan={2}>
-            <Button variant="outline" colorScheme="purple" size="md" w="full">
-              Log In with Test Credentials
-            </Button>
+            <Link to="/home">
+              <Button variant="outline" colorScheme="purple" size="md" w="full">
+                Log In with Test Credentials
+              </Button>
+            </Link>
           </GridItem>
           <GridItem colSpan={2}>
             <Link to="/signup">
