@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import "./App.css";
 import HeroHeader from "./assets/semi-final-img.png";
-import MyLogo2 from "./assets/TripleS-final-logo.png";
+import TripleSChatLogo from "./assets/TripleS-final-logo.png";
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
           <Image src={HeroHeader}></Image>
           <VStack w="full" h="full" spacing={10} alignItems="center" p={5}>
             <Box>
-              <Image src={MyLogo2}></Image>
+              <Image src={TripleSChatLogo}></Image>
             </Box>
             <SimpleGrid columns={2} columnGap={3} rowGap={6} w="full">
               <GridItem colSpan={2}>
