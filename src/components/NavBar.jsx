@@ -24,8 +24,6 @@ export default function NavBar() {
           </Heading>
         </Box>
       </nav>
-
-      <MainContainer />
     </div>
   );
 }
