@@ -1,8 +1,8 @@
 import "./App.css";
 import LoginPage from "./pages/LoginPage";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
-import NavBar from "./components/NavBar";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/home" element={<NavBar />} />
+        <Route path="/home" element={<HomePage />} />
       </Routes>
     </div>
   );
