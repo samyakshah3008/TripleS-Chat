@@ -34,7 +34,9 @@ export default function SideBar() {
           </Flex>
           <Flex alignItems="center" gap={10}>
             <AiIcons.AiOutlineUser />
-            <Text fontWeight="bold">Profile</Text>
+            <Link to="/profile">
+              <Text fontWeight="bold">Profile</Text>
+            </Link>
           </Flex>
           <Flex alignItems="center" gap={10}>
             <Button w="full" colorScheme="purple">
