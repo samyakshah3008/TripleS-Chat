@@ -31,9 +31,9 @@ export default function PostContainer() {
                 fontSize="xl"
               >
                 <Flex gap={10}>
-                  <GrIcons.GrGallery />
-                  <AiIcons.AiOutlineFileGif />
-                  <AiIcons.AiOutlineSmile />
+                  <GrIcons.GrGallery cursor="pointer" />
+                  <AiIcons.AiOutlineFileGif cursor="pointer" />
+                  <AiIcons.AiOutlineSmile cursor="pointer" />
                 </Flex>
                 <Button colorScheme="purple">Post this</Button>
               </Flex>
