@@ -1,6 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import React from "react";
-import BookmarkPostContainer from "../components/BookmarkPostContainer";
+import ExplorePostContainer from "../components/ExplorePostContainer";
 import NavBar from "../components/NavBar";
 import RightSideBar from "../components/RightSideBar";
 import SideBar from "../components/SideBar";
@@ -11,7 +11,7 @@ export default function ExplorePage() {
       <NavBar />
       <Flex bg="#E5E5E5">
         <SideBar />
-        <BookmarkPostContainer />
+        <ExplorePostContainer />
         <RightSideBar />
       </Flex>
     </div>
