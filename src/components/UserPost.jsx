@@ -31,11 +31,11 @@ export default function UserPost() {
               esse voluptate explicabo, debitis minus earum!
             </Text>
             <Flex justifyContent="space-between" fontSize="xl" gap={10}>
-              <AiIcons.AiOutlineHeart />
-              <VsIcons.VscComment />
-              <AiIcons.AiOutlineShareAlt />
-              <BsIcons.BsBookmarkStar />
-              <SiIcons.SiSimpleanalytics />
+              <AiIcons.AiOutlineHeart cursor="pointer" />
+              <VsIcons.VscComment cursor="pointer" />
+              <AiIcons.AiOutlineShareAlt cursor="pointer" />
+              <BsIcons.BsBookmarkStar cursor="pointer" />
+              <SiIcons.SiSimpleanalytics cursor="pointer" />
             </Flex>
           </Flex>
         </Flex>
