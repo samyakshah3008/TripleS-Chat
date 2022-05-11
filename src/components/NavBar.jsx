@@ -1,5 +1,6 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Button, Heading } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
 import MainContainer from "./MainContainer";
 
 export default function NavBar() {
@@ -22,6 +23,17 @@ export default function NavBar() {
           >
             TripleS-Chat
           </Heading>
+          <Link to="/">
+            <Button
+              colorScheme="purple"
+              marginRight="20px"
+              size="md"
+              variant="ghost"
+              fontWeight="bold"
+            >
+              Logout
+            </Button>
+          </Link>
         </Box>
       </nav>
     </div>
