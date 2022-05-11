@@ -3,6 +3,7 @@ import React from "react";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io5";
 import * as BsIcons from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 export default function SideBar() {
   return (
@@ -11,15 +12,21 @@ export default function SideBar() {
         <Flex h={530} fontSize={20} flexDirection="column" gap={8} w={260}>
           <Flex alignItems="center" gap={10}>
             <AiIcons.AiOutlineHome />
-            <Text fontWeight="bold">Home</Text>
+            <Link to="/home">
+              <Text fontWeight="bold">Home</Text>
+            </Link>
           </Flex>
           <Flex alignItems="center" gap={10}>
             <IoIcons.IoRocketOutline />
-            <Text fontWeight="bold">Explore</Text>
+            <Link to="/explore">
+              <Text fontWeight="bold">Explore</Text>
+            </Link>
           </Flex>
           <Flex alignItems="center" gap={10}>
             <BsIcons.BsBookmarkStar />
-            <Text fontWeight="bold">Bookmarks</Text>
+            <Link to="/bookmarks">
+              <Text fontWeight="bold">Bookmarks</Text>
+            </Link>
           </Flex>
           <Flex alignItems="center" gap={10}>
             <BsIcons.BsBell />
