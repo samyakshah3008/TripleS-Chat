@@ -1,7 +1,6 @@
 import { Box, Button, Heading } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
-import MainContainer from "./MainContainer";
 
 export default function NavBar() {
   return (
