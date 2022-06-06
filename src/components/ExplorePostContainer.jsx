@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import React from "react";
 import ExplorePageChips from "./ExplorePageChips";
 import UserPost from "./UserPost";
