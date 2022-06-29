@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -10,8 +10,40 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import TripleSChatLogo from "../assets/TripleS-final-logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authInfo, getToken } from "../store/authSlice";
+import axios from "axios";
+
 export default function SignupContainer() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [userDetail, setUserDetail] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+
+  const changeHandler = (e) => {
+    setUserDetail((previousState) => ({
+      ...previousState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const signUpClickHandler = async () => {
+    try {
+      const response = await axios.post("/api/auth/signup", userDetail);
+      dispatch(authInfo(response.data.createdUser));
+      dispatch(getToken(response.data.encodedToken));
+      navigate("/home");
+    } catch (error) {
+      console.log(error.response);
+    }
+  };
+
   return (
     <>
       <VStack w="full" h="full" spacing={10} alignItems="center" p={5}>
@@ -22,6 +54,8 @@ export default function SignupContainer() {
           <GridItem colSpan={2}>
             <FormControl>
               <Input
+                onChange={changeHandler}
+                name="firstName"
                 _focus={{
                   border: "2px",
                   borderColor: "purple.600",
@@ -34,6 +68,8 @@ export default function SignupContainer() {
           <GridItem colSpan={2}>
             <FormControl>
               <Input
+                onChange={changeHandler}
+                name="lastName"
                 _focus={{
                   border: "2px",
                   borderColor: "purple.600",
@@ -46,6 +82,8 @@ export default function SignupContainer() {
           <GridItem colSpan={2}>
             <FormControl>
               <Input
+                onChange={changeHandler}
+                name="email"
                 type="email"
                 _focus={{
                   border: "2px",
@@ -59,6 +97,8 @@ export default function SignupContainer() {
           <GridItem colSpan={2}>
             <FormControl>
               <Input
+                onChange={changeHandler}
+                name="password"
                 type="password"
                 _focus={{
                   border: "2px",
@@ -71,7 +111,12 @@ export default function SignupContainer() {
           </GridItem>
 
           <GridItem colSpan={2}>
-            <Button colorScheme="purple" size="md" w="full">
+            <Button
+              onClick={signUpClickHandler}
+              colorScheme="purple"
+              size="md"
+              w="full"
+            >
               Sign Up
             </Button>
           </GridItem>
