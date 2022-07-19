@@ -18,6 +18,8 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
+    avatar:
+      "https://res.cloudinary.com/dqgqdj4jf/image/upload/v1654448058/PalletGram/users/60b7ff0e93f2b25ece22b640_itsMe_bz9a4e.png",
     username: "aron20",
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -32,6 +34,8 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
+    avatar:
+      "https://res.cloudinary.com/dqgqdj4jf/image/upload/v1654448058/PalletGram/users/60b7ff0e93f2b25ece22b640_itsMe_bz9a4e.png",
     username: "aron20",
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -48,6 +52,8 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
+    avatar:
+      "https://res.cloudinary.com/dqgqdj4jf/image/upload/v1654448441/PalletGram/users/PicsArt_08-01-12.00.18_j33iee.jpg",
     username: "varnita19",
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -64,6 +70,8 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
+    avatar:
+      "https://res.cloudinary.com/dqgqdj4jf/image/upload/v1654448441/PalletGram/users/PicsArt_08-01-12.00.18_j33iee.jpg",
     username: "varnita19",
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -80,6 +88,8 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
+    avatar:
+      "https://res.cloudinary.com/dqgqdj4jf/image/upload/v1654447975/PalletGram/users/74gujmdK_400x400_qggv5e.jpg",
     username: "samyakshah",
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -96,6 +106,8 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
+    avatar:
+      "https://res.cloudinary.com/dqgqdj4jf/image/upload/v1654447975/PalletGram/users/74gujmdK_400x400_qggv5e.jpg",
     username: "samyakshah",
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -111,6 +123,8 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
+    avatar:
+      "https://res.cloudinary.com/dqgqdj4jf/image/upload/v1654447947/PalletGram/users/m0lXiJrv_400x400_yly3ts.jpg",
     username: "pritamkumar",
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -127,6 +141,8 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
+    avatar:
+      "https://res.cloudinary.com/dqgqdj4jf/image/upload/v1654447947/PalletGram/users/m0lXiJrv_400x400_yly3ts.jpg",
     username: "pritamkumar",
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -142,6 +158,8 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
+    avatar:
+      "https://res.cloudinary.com/dqgqdj4jf/image/upload/v1654447993/PalletGram/users/6BqB7h-i_400x400_qkbhfu.jpg",
     username: "anujkumar",
     createdAt: formatDate(),
     updatedAt: formatDate(),
@@ -156,6 +174,8 @@ export const posts = [
       likedBy: [],
       dislikedBy: [],
     },
+    avatar:
+      "https://res.cloudinary.com/dqgqdj4jf/image/upload/v1654447993/PalletGram/users/6BqB7h-i_400x400_qkbhfu.jpg",
     username: "anujkumar",
     createdAt: formatDate(),
     updatedAt: formatDate(),

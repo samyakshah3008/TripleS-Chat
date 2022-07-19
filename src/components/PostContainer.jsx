@@ -1,13 +1,27 @@
 import { Avatar, Box, Button, Flex, Textarea } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import * as AiIcons from "react-icons/ai";
 import * as GrIcons from "react-icons/gr";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllPosts } from "../store/postSlice";
+import { getAny } from "../store/userSlice";
 import UserPost from "./UserPost";
 
 export default function PostContainer() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllPosts());
+    dispatch(getAny());
+  }, [dispatch]);
+
+  const { posts } = useSelector((state) => state.posts);
+  const { users } = useSelector((state) => state.users);
+  const { userInfo } = useSelector((state) => state.auth);
+
   return (
     <>
-      <Box flexGrow="1" w="25%" h={700}>
+      <Box flexGrow="1" w="25%" h="auto">
         <Box p={5} h={250} w="full" marginTop="70px" bg="white">
           <Flex gap={5}>
             <Avatar
@@ -41,7 +55,6 @@ export default function PostContainer() {
           </Flex>
         </Box>
 
-        <UserPost />
         <UserPost />
       </Box>
     </>

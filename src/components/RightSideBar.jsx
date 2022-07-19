@@ -5,8 +5,10 @@ import FollowUserChip from "./FollowUserChip";
 export default function RightSideBar() {
   return (
     <>
-      <Box w="25%" h={700}>
+      <Box w="25%" h="auto">
         <Flex
+          pos="sticky"
+          top="0"
           gap={5}
           flexDirection="column"
           justifyContent="center"
@@ -23,10 +25,6 @@ export default function RightSideBar() {
             bg="white"
           ></Input>
           <Box w="80%" p={3} bg="white">
-            <FollowUserChip />
-            <FollowUserChip />
-            <FollowUserChip />
-            <FollowUserChip />
             <FollowUserChip />
           </Box>
         </Flex>

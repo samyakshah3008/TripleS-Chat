@@ -8,8 +8,16 @@ import { Link } from "react-router-dom";
 export default function SideBar() {
   return (
     <>
-      <Box p={20} w="25%" h={800}>
-        <Flex h={530} fontSize={20} flexDirection="column" gap={8} w={260}>
+      <Box p={20} w="25%" h="auto">
+        <Flex
+          pos="sticky"
+          top={10}
+          h={530}
+          fontSize={20}
+          flexDirection="column"
+          gap={8}
+          w={260}
+        >
           <Flex alignItems="center" gap={10}>
             <AiIcons.AiOutlineHome />
             <Link to="/home">
@@ -45,7 +53,14 @@ export default function SideBar() {
           </Flex>
         </Flex>
 
-        <Flex w={260} gap={4} cursor="pointer">
+        <Flex
+          pos="sticky"
+          bottom="0"
+          top={600}
+          w={260}
+          gap={4}
+          cursor="pointer"
+        >
           <Avatar
             size="md"
             name="Ryan Florence"
