@@ -2,7 +2,7 @@ import { Avatar, Box, Button, Flex, Textarea } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import * as AiIcons from "react-icons/ai";
 import * as GrIcons from "react-icons/gr";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getAllPosts } from "../store/postSlice";
 import { getAny } from "../store/userSlice";
 import UserPost from "./UserPost";
@@ -14,10 +14,6 @@ export default function PostContainer() {
     dispatch(getAllPosts());
     dispatch(getAny());
   }, [dispatch]);
-
-  const { posts } = useSelector((state) => state.posts);
-  const { users } = useSelector((state) => state.users);
-  const { userInfo } = useSelector((state) => state.auth);
 
   return (
     <>
