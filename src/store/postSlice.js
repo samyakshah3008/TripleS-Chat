@@ -1,18 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import {
-  getPosts,
-  likedPostService,
-  dislikedPostService,
-  bookmarkService,
-  removeBookmarkService,
-  editPostServices,
-  deletePostServices,
-  postCommentsServices,
-  editCommentsServices,
-  deleteCommentsServices,
-  getUserPostServices,
-} from "../services/postServices";
+import { getPosts } from "../services/postServices";
 
 export const getAllPosts = createAsyncThunk("posts/getPosts", async () => {
   try {
