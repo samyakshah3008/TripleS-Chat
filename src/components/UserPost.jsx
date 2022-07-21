@@ -4,12 +4,19 @@ import * as AiIcons from "react-icons/ai";
 import * as BsIcons from "react-icons/bs";
 import * as VsIcons from "react-icons/vsc";
 import * as SiIcons from "react-icons/si";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  bookmarkPosts,
+  dislikePosts,
+  likePosts,
+  removeBookmarkPosts,
+} from "../store/postSlice";
 
 export default function UserPost() {
-  const { posts } = useSelector((state) => state.posts);
+  const { posts, bookmarks } = useSelector((state) => state.posts);
   const { users } = useSelector((state) => state.users);
-  const { userInfo } = useSelector((state) => state.auth);
+  const { userInfo, token } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const loggedUser = users?.find(
     (eachUser) => eachUser.username === userInfo.username
@@ -23,6 +30,37 @@ export default function UserPost() {
         (each) => each.username === eachPost.username
       ) || eachPost.username === loggedUser?.username
   );
+
+  const bookmarkByUser = (selectedPostId) => {
+    return (
+      bookmarks?.filter((bookmarkId) => bookmarkId === selectedPostId)
+        .length !== 0
+    );
+  };
+
+  const bookmarkHandler = (postId) => {
+    if (bookmarkByUser(postId)) {
+      dispatch(removeBookmarkPosts({ postId, token: token }));
+    } else {
+      dispatch(bookmarkPosts({ postId, token: token }));
+    }
+  };
+
+  const likeByUser = (selectedPost) => {
+    return (
+      selectedPost.likes.likedBy?.filter(
+        (users) => users.username === userInfo.username
+      ).length !== 0
+    );
+  };
+
+  const likeHandler = (post) => {
+    if (likeByUser(post)) {
+      dispatch(dislikePosts({ postId: post._id, token: token }));
+    } else {
+      dispatch(likePosts({ postId: post._id, token: token }));
+    }
+  };
 
   return (
     <div>
@@ -46,12 +84,36 @@ export default function UserPost() {
                   <Text>{post.content}</Text>
                   <Flex justifyContent="space-between" fontSize="xl" gap={10}>
                     <Flex gap={3} alignItems="center">
-                      <AiIcons.AiOutlineHeart cursor="pointer" />
+                      {likeByUser(post) ? (
+                        <AiIcons.AiFillHeart
+                          bg="red"
+                          onClick={() => likeHandler(post)}
+                          cursor="pointer"
+                        />
+                      ) : (
+                        <AiIcons.AiOutlineHeart
+                          onClick={() => likeHandler(post)}
+                          cursor="pointer"
+                        />
+                      )}
+
                       <Box fontSize={15}> {post.likes.likeCount} </Box>
                     </Flex>
                     <VsIcons.VscComment cursor="pointer" />
                     <AiIcons.AiOutlineShareAlt cursor="pointer" />
-                    <BsIcons.BsBookmarkStar cursor="pointer" />
+
+                    {bookmarkByUser(post._id) ? (
+                      <BsIcons.BsFillBookmarkCheckFill
+                        onClick={() => bookmarkHandler(post._id)}
+                        cursor="pointer"
+                      />
+                    ) : (
+                      <BsIcons.BsBookmarkStar
+                        onClick={() => bookmarkHandler(post._id)}
+                        cursor="pointer"
+                      />
+                    )}
+
                     <SiIcons.SiSimpleanalytics cursor="pointer" />
                   </Flex>
                 </Flex>
