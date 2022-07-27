@@ -45,7 +45,7 @@ export default function FollowUserChip() {
     <div>
       {userSuggestion?.map((item) => {
         return (
-          <>
+          <div key={item._id}>
             <Flex marginBottom={4} w={260} gap={4} cursor="pointer">
               <Avatar size="md" name="Ryan Florence" src={item.avatar} />
               <Flex justifyContent="flex-start" flexDirection="column">
@@ -74,7 +74,7 @@ export default function FollowUserChip() {
                 </Text>
               </Flex>
             </Flex>
-          </>
+          </div>
         );
       })}
     </div>
