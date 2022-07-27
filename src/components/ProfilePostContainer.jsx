@@ -57,7 +57,6 @@ export default function ProfilePostContainer() {
         <Heading marginTop="40px" size="md">
           Your Posts
         </Heading>
-        <UserPost />
       </Box>
     </>
   );

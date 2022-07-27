@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import BookmarksPage from "./pages/BookmarksPage";
 import ExplorePage from "./pages/ExplorePage";
 import ProfilePage from "./pages/ProfilePage";
+import Comments from "./components/Comments";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/bookmarks" element={<BookmarksPage />} />
         <Route path="/explore" exact element={<ExplorePage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/comments" element={<Comments />} />
       </Routes>
     </div>
   );

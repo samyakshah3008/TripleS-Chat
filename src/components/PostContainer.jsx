@@ -2,18 +2,34 @@ import { Avatar, Box, Button, Flex, Textarea } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import * as AiIcons from "react-icons/ai";
 import * as GrIcons from "react-icons/gr";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "../store/postSlice";
 import { getAny } from "../store/userSlice";
 import UserPost from "./UserPost";
 
 export default function PostContainer() {
+  const { posts, bookmarks } = useSelector((state) => state.posts);
+  const { users } = useSelector((state) => state.users);
+  const { userInfo, token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllPosts());
     dispatch(getAny());
   }, [dispatch]);
+
+  const loggedUser = users?.find(
+    (eachUser) => eachUser.username === userInfo.username
+  );
+
+  const loggedUserFollowing = loggedUser?.following;
+
+  const feedPost = posts?.filter(
+    (eachPost) =>
+      loggedUserFollowing?.find(
+        (each) => each.username === eachPost.username
+      ) || eachPost.username === loggedUser?.username
+  );
 
   return (
     <>
@@ -50,8 +66,9 @@ export default function PostContainer() {
             </Flex>
           </Flex>
         </Box>
-
-        <UserPost />
+        {feedPost.map((post) => {
+          return <UserPost post={post} />;
+        })}
       </Box>
     </>
   );
