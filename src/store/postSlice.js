@@ -105,6 +105,23 @@ export const deleteComments = createAsyncThunk(
   }
 );
 
+export const createNewPost = createAsyncThunk(
+  "posts/createPost",
+  async ({ content, imgUrl, token }) => {
+    try {
+      const response = await axios.post(
+        "/api/posts",
+        { postData: { content: content, imgUrl: imgUrl, token: token } },
+        { headers: { authorization: token } }
+      );
+
+      return response.data.posts;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 const initialState = {
   posts: [],
   bookmarks: [],
