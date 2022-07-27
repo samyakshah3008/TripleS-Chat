@@ -91,8 +91,6 @@ export const postComments = createAsyncThunk(
 export const deleteComments = createAsyncThunk(
   "posts/deleteComments",
   async (item) => {
-    console.log("anythinngg");
-
     try {
       const response = await deleteCommentsServices(
         item.postId,
@@ -100,8 +98,7 @@ export const deleteComments = createAsyncThunk(
         item.token
       );
 
-      console.log(response, "end game");
-      // return response.data.posts;
+      return response.data.posts;
     } catch (error) {
       console.error(error);
     }
@@ -142,7 +139,6 @@ const postSlice = createSlice({
       state.posts = action.payload;
     },
     [deleteComments.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.posts = action.payload;
     },
   },
