@@ -30,7 +30,6 @@ import {
   removeBookmarkPosts,
 } from "../store/postSlice";
 import Comments from "./Comments";
-import CommentModal from "./CommentModal";
 
 export default function UserPost({ post }) {
   const { posts, bookmarks } = useSelector((state) => state.posts);
