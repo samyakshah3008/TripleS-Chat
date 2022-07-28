@@ -10,6 +10,8 @@ import {
   removeBookmarkService,
 } from "../services/postServices";
 
+import axios from "axios";
+
 export const getAllPosts = createAsyncThunk("posts/getPosts", async () => {
   try {
     const {
