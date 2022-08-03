@@ -15,6 +15,14 @@ import {
   Text,
   Textarea,
   useDisclosure,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuItemOption,
+  MenuGroup,
+  MenuOptionGroup,
+  MenuDivider,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import * as AiIcons from "react-icons/ai";
@@ -24,7 +32,9 @@ import * as SiIcons from "react-icons/si";
 import { useDispatch, useSelector } from "react-redux";
 import {
   bookmarkPosts,
+  deletePost,
   dislikePosts,
+  editPost,
   likePosts,
   postComments,
   removeBookmarkPosts,
@@ -36,6 +46,7 @@ export default function UserPost({ post }) {
   const { users } = useSelector((state) => state.users);
   const { userInfo, token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const [editPostInput, setEditPostInput] = useState();
 
   const bookmarkByUser = (selectedPostId) => {
     return (
@@ -69,6 +80,11 @@ export default function UserPost({ post }) {
   };
 
   const { onOpen, onClose, isOpen } = useDisclosure();
+  const {
+    isOpen: isEditOpen,
+    onOpen: onEditOpen,
+    onClose: onEditClose,
+  } = useDisclosure();
 
   const commentTextHandler = (e) => {
     setCommentData(e.target.value);
@@ -87,6 +103,18 @@ export default function UserPost({ post }) {
     setCommentData("");
 
     onClose();
+  };
+
+  const deletePostHandler = (post) => {
+    console.log(post, "FROM");
+    console.log(post._id, token);
+    dispatch(deletePost({ postId: post._id, token: token }));
+  };
+
+  const updatePostHandler = (post) => {
+    console.log(post, editPostInput);
+    dispatch(editPost({ id: post._id, content: editPostInput, token: token }));
+    onEditClose();
   };
 
   return (
@@ -164,8 +192,53 @@ export default function UserPost({ post }) {
                   cursor="pointer"
                 />
               )}
+              {post.username === "aron20" ? (
+                <>
+                  <Menu>
+                    <MenuButton>
+                      <BsIcons.BsThreeDotsVertical cursor="pointer" />
+                    </MenuButton>
+                    <MenuList>
+                      <MenuItem onClick={onEditOpen}>Edit</MenuItem>
+                      <Modal isOpen={isEditOpen} onClose={onEditClose}>
+                        <ModalOverlay />
+                        <ModalContent>
+                          <ModalHeader>Edit post</ModalHeader>
 
-              <SiIcons.SiSimpleanalytics cursor="pointer" />
+                          <ModalCloseButton />
+                          <ModalBody>
+                            <Textarea
+                              _focus={{
+                                border: "2px",
+                                borderColor: "purple.600",
+                              }}
+                              // value={post.content}
+                              onChange={(e) => setEditPostInput(e.target.value)}
+                            />
+                          </ModalBody>
+                          <ModalFooter>
+                            <Button
+                              onClick={() => updatePostHandler(post)}
+                              colorScheme="purple"
+                              mr={3}
+                            >
+                              Update
+                            </Button>
+                          </ModalFooter>
+                        </ModalContent>
+                      </Modal>
+                      <MenuItem onClick={() => deletePostHandler(post)}>
+                        Delete
+                      </MenuItem>
+                    </MenuList>
+                  </Menu>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <SiIcons.SiSimpleanalytics cursor="pointer" />
+                </>
+              )}
             </Flex>
           </Flex>
         </Flex>
