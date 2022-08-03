@@ -4,7 +4,7 @@ import { useState } from "react";
 import * as AiIcons from "react-icons/ai";
 import * as GrIcons from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllPosts } from "../store/postSlice";
+import { createNewPost, getAllPosts } from "../store/postSlice";
 import { getAny } from "../store/userSlice";
 import UserPost from "./UserPost";
 
@@ -38,6 +38,10 @@ export default function PostContainer() {
     setPostData(e.target.value);
   };
 
+  const createNewPostBtnHandler = () => {
+    dispatch(createNewPost({ content: postData, token: token }));
+  };
+
   return (
     <>
       <Box flexGrow="1" w="25%" h="auto">
@@ -65,7 +69,9 @@ export default function PostContainer() {
                   <AiIcons.AiOutlineFileGif cursor="pointer" />
                   <AiIcons.AiOutlineSmile cursor="pointer" />
                 </Flex>
-                <Button colorScheme="purple">Post this</Button>
+                <Button onClick={createNewPostBtnHandler} colorScheme="purple">
+                  Post this
+                </Button>
               </Flex>
             </Flex>
           </Flex>
