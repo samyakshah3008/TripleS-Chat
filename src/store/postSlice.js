@@ -3,7 +3,10 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
   bookmarkService,
   deleteCommentsServices,
+  deletePostServices,
   dislikedPostService,
+  editCommentsServices,
+  editPostService,
   getPosts,
   likedPostService,
   postCommentsService,
@@ -107,19 +110,61 @@ export const deleteComments = createAsyncThunk(
   }
 );
 
+export const editComments = createAsyncThunk(
+  "posts/editComments",
+  async ({ postId, commentId, commentData, token }) => {
+    try {
+      const response = await editCommentsServices(
+        postId,
+        commentId,
+        commentData,
+        token
+      );
+      console.log(response);
+      return response.data.posts;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+);
+
 export const createNewPost = createAsyncThunk(
   "posts/createPost",
-  async ({ content, imgUrl, token }) => {
+  async ({ content, token }) => {
     try {
       const response = await axios.post(
         "/api/posts",
-        { postData: { content: content, imgUrl: imgUrl, token: token } },
+        { postData: { content: content, token: token } },
         { headers: { authorization: token } }
       );
-
       return response.data.posts;
     } catch (error) {
       console.log(error);
+    }
+  }
+);
+
+export const deletePost = createAsyncThunk(
+  "/posts/deletePosts",
+  async ({ postId, token }) => {
+    try {
+      const response = await deletePostServices(postId, token);
+      return response.data.posts;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const editPost = createAsyncThunk(
+  "/posts/editPosts",
+  async ({ id, content, token }) => {
+    try {
+      const response = await editPostService(id, content, token);
+      console.log(response);
+      return response.data.posts;
+    } catch (error) {
+      console.error(error);
     }
   }
 );
@@ -142,6 +187,12 @@ const postSlice = createSlice({
     [getAllPosts.rejected]: (state) => {
       state.error = "Error occured! Try again later";
     },
+    [deletePost.fulfilled]: (state, action) => {
+      state.posts = action.payload;
+    },
+    [editPost.fulfilled]: (state, action) => {
+      state.posts = action.payload;
+    },
     [bookmarkPosts.fulfilled]: (state, action) => {
       state.bookmarks = action.payload;
     },
@@ -158,6 +209,12 @@ const postSlice = createSlice({
       state.posts = action.payload;
     },
     [deleteComments.fulfilled]: (state, action) => {
+      state.posts = action.payload;
+    },
+    [createNewPost.fulfilled]: (state, action) => {
+      state.posts = action.payload;
+    },
+    [editComments.fulfilled]: (state, action) => {
       state.posts = action.payload;
     },
   },

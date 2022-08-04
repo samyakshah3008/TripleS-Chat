@@ -20,6 +20,14 @@ export const dislikedPostService = (postId, token) => {
   );
 };
 
+export const editPostService = (id, content, token) => {
+  return axios.post(
+    `/api/posts/edit/${id}`,
+    { postData: { content: content, token: token } },
+    { headers: { authorization: token } }
+  );
+};
+
 export const bookmarkService = (postId, token) => {
   return axios.post(
     `/api/users/bookmark/${postId}`,
