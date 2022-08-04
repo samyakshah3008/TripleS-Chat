@@ -113,6 +113,7 @@ export default function UserPost({ post }) {
 
   const updatePostHandler = (post) => {
     console.log(post, editPostInput);
+    setEditPostInput(post.content);
     dispatch(editPost({ id: post._id, content: editPostInput, token: token }));
     onEditClose();
   };
@@ -199,7 +200,14 @@ export default function UserPost({ post }) {
                       <BsIcons.BsThreeDotsVertical cursor="pointer" />
                     </MenuButton>
                     <MenuList>
-                      <MenuItem onClick={onEditOpen}>Edit</MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          onEditOpen();
+                          setEditPostInput(post.content);
+                        }}
+                      >
+                        Edit
+                      </MenuItem>
                       <Modal isOpen={isEditOpen} onClose={onEditClose}>
                         <ModalOverlay />
                         <ModalContent>
@@ -212,7 +220,7 @@ export default function UserPost({ post }) {
                                 border: "2px",
                                 borderColor: "purple.600",
                               }}
-                              // value={post.content}
+                              value={editPostInput}
                               onChange={(e) => setEditPostInput(e.target.value)}
                             />
                           </ModalBody>
