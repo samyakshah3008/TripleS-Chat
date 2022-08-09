@@ -13,6 +13,8 @@ import {
   removeBookmarkService,
 } from "../services/postServices";
 
+import toast from "react-hot-toast";
+
 import axios from "axios";
 
 export const getAllPosts = createAsyncThunk("posts/getPosts", async () => {
@@ -35,7 +37,6 @@ export const bookmarkPosts = createAsyncThunk(
   async ({ postId, token }) => {
     try {
       const response = await bookmarkService(postId, token);
-      console.log(response);
       return response.data.bookmarks;
     } catch (error) {
       console.error(error);
@@ -60,7 +61,6 @@ export const likePosts = createAsyncThunk(
   async ({ postId, token }) => {
     try {
       const response = await likedPostService(postId, token);
-      console.log(response, "from like");
       return response.data.posts;
     } catch (error) {
       console.log("from like error");
@@ -120,7 +120,6 @@ export const editComments = createAsyncThunk(
         commentData,
         token
       );
-      console.log(response);
       return response.data.posts;
     } catch (error) {
       console.error(error);
@@ -137,6 +136,11 @@ export const createNewPost = createAsyncThunk(
         { postData: { content: content, token: token } },
         { headers: { authorization: token } }
       );
+
+      if (response.status === 201) {
+        toast.success("NEW POST ADD", { position: "top-right" });
+      }
+
       return response.data.posts;
     } catch (error) {
       console.log(error);
@@ -161,11 +165,18 @@ export const editPost = createAsyncThunk(
   async ({ id, content, token }) => {
     try {
       const response = await editPostService(id, content, token);
-      console.log(response);
       return response.data.posts;
     } catch (error) {
       console.error(error);
     }
+  }
+);
+
+export const getTrendingPosts = createAsyncThunk(
+  "posts/trendingPost",
+  async ({ trendingPost }) => {
+    const data = await trendingPost;
+    return data;
   }
 );
 
@@ -215,6 +226,9 @@ const postSlice = createSlice({
       state.posts = action.payload;
     },
     [editComments.fulfilled]: (state, action) => {
+      state.posts = action.payload;
+    },
+    [getTrendingPosts.fulfilled]: (state, action) => {
       state.posts = action.payload;
     },
   },
