@@ -69,8 +69,6 @@ export default function Comments({ eachPost }) {
   return (
     <div>
       {eachPost.comments.map((eachComment) => {
-        console.log(eachComment);
-
         return (
           <>
             <Box h="auto" p={5} marginTop="20px" bg="white">
