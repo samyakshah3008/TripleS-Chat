@@ -17,7 +17,7 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/bookmarks" element={<BookmarksPage />} />
         <Route path="/explore" exact element={<ExplorePage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/profile/:username" element={<ProfilePage />} />
         <Route path="/comments" element={<Comments />} />
       </Routes>
     </div>
