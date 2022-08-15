@@ -40,6 +40,7 @@ import {
   removeBookmarkPosts,
 } from "../store/postSlice";
 import Comments from "./Comments";
+import { useNavigate } from "react-router-dom";
 
 export default function UserPost({ post }) {
   const { posts, bookmarks } = useSelector((state) => state.posts);
@@ -47,6 +48,7 @@ export default function UserPost({ post }) {
   const { userInfo, token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [editPostInput, setEditPostInput] = useState();
+  const navigate = useNavigate();
 
   const bookmarkByUser = (selectedPostId) => {
     return (
@@ -122,7 +124,13 @@ export default function UserPost({ post }) {
     <div key={post._id}>
       <Box h="auto" p={5} marginTop="20px" bg="white">
         <Flex gap={5}>
-          <Avatar size="md" name="Ryan Florence" src={post.avatar} />
+          <Avatar
+            onClick={() => navigate(`/profile/${post.username}`)}
+            size="md"
+            name="Ryan Florence"
+            src={post.avatar}
+            cursor="pointer"
+          />
           <Flex
             justifyContent="space-between"
             gap={4}
@@ -130,8 +138,20 @@ export default function UserPost({ post }) {
             flexDirection="column"
           >
             <Flex gap={2} alignItems="center">
-              <Heading size="sm"> {post.username} </Heading>
-              <Text color="gray.500">@ {post.username} </Text>
+              <Heading
+                onClick={() => navigate(`/profile/${post.username}`)}
+                size="sm"
+                cursor="pointer"
+              >
+                {post.username}
+              </Heading>
+              <Text
+                onClick={() => navigate(`/profile/${post.username}`)}
+                color="gray.500"
+                cursor="pointer"
+              >
+                @ {post.username}
+              </Text>
             </Flex>
             <Text>{post.content}</Text>
             <Flex justifyContent="space-between" fontSize="xl" gap={10}>

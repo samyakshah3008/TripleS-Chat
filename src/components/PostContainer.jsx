@@ -4,7 +4,11 @@ import { useState } from "react";
 import * as AiIcons from "react-icons/ai";
 import * as GrIcons from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
-import { createNewPost, getAllPosts } from "../store/postSlice";
+import {
+  createNewPost,
+  getAllPosts,
+  getTrendingPosts,
+} from "../store/postSlice";
 import { getAny } from "../store/userSlice";
 import UserPost from "./UserPost";
 
@@ -42,6 +46,22 @@ export default function PostContainer() {
     dispatch(createNewPost({ content: postData, token: token }));
   };
 
+  const trendingPost = [...posts].sort(
+    (a, b) => b.likes.likeCount - a.likes.likeCount
+  );
+
+  const sortByDate = [...posts].sort(
+    (a, b) => new Date(b.createdAt).getDate() - new Date(a.createdAt).getDate()
+  );
+
+  const filteredPostsHandler = (posts, type) => {
+    if (type === "trending") {
+      dispatch(getTrendingPosts({ trendingPost: [...posts] }));
+    } else if (type === "sortByDate") {
+      dispatch(getTrendingPosts({ trendingPost: [...posts].reverse() }));
+    }
+  };
+
   return (
     <>
       <Box flexGrow="1" w="25%" h="auto">
@@ -76,6 +96,18 @@ export default function PostContainer() {
             </Flex>
           </Flex>
         </Box>
+        <Flex justifyContent="flex-end" gap={10} marginTop={10}>
+          <Button
+            onClick={() => filteredPostsHandler(trendingPost, "trending")}
+          >
+            Trending Post
+          </Button>
+          <Button
+            onClick={() => filteredPostsHandler(sortByDate, "sortByDate")}
+          >
+            New posts
+          </Button>
+        </Flex>
         {feedPost.map((post) => {
           return <UserPost post={post} />;
         })}

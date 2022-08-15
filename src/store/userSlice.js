@@ -1,19 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { followUserService } from "../services/userServices";
+import axios from "axios";
 
 const initialState = {
   users: [],
   error: "",
 };
 
-export const followUser = createAsyncThunk(
-  "users/getFollow",
-  async ({ followUserId, token }) => {
+export const editProfile = createAsyncThunk(
+  "users/editProfile",
+  async ({ bio, website, token }) => {
     try {
-      const response = await followUserService(followUserId, token);
-      return response.data;
+      const response = await axios.post(
+        "/api/users/edit",
+        { userData: { bio: bio, website: website } },
+        { headers: { authorization: token } }
+      );
+      return response.data.user;
     } catch (error) {
-      console.log(error);
+      console.error(error.response);
     }
   }
 );
@@ -28,20 +33,12 @@ const createUserSlice = createSlice({
   },
 
   extraReducers: {
-    [followUser.fulfilled]: (state, { payload }) => {
-      state.users = state.users.map((user) => {
-        if (user.username === payload.followUser.username) {
-          return payload.followUser;
-        }
-        if (user.username === payload.user.username) {
-          return payload.user;
-        }
-        return user;
-      });
-    },
-    [followUser.rejected]: (state, { payload }) => {
-      state.isLoading = false;
-      state.error = payload;
+    [editProfile.fulfilled]: (state, action) => {
+      state.users = state.users.map((eachUser) =>
+        eachUser.username === action.payload.username
+          ? action.payload
+          : eachUser
+      );
     },
   },
 });

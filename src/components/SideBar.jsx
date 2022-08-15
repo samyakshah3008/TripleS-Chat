@@ -3,9 +3,13 @@ import React from "react";
 import * as AiIcons from "react-icons/ai";
 import * as IoIcons from "react-icons/io5";
 import * as BsIcons from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function SideBar() {
+  const navigate = useNavigate();
+  const { userInfo } = useSelector((state) => state.auth);
+
   return (
     <>
       <Box p={20} w="25%" h="auto">
@@ -42,9 +46,14 @@ export default function SideBar() {
           </Flex>
           <Flex alignItems="center" gap={10}>
             <AiIcons.AiOutlineUser />
-            <Link to="/profile">
-              <Text fontWeight="bold">Profile</Text>
-            </Link>
+
+            <Text
+              onClick={() => navigate(`/profile/${userInfo.username}`)}
+              fontWeight="bold"
+              cursor="pointer"
+            >
+              Profile
+            </Text>
           </Flex>
           <Flex alignItems="center" gap={10}>
             <Button w="full" colorScheme="purple">
@@ -61,15 +70,13 @@ export default function SideBar() {
           gap={4}
           cursor="pointer"
         >
-          <Avatar
-            size="md"
-            name="Ryan Florence"
-            src="https://bit.ly/ryan-florence"
-          />
+          <Avatar size="md" name="Ryan Florence" src={userInfo.avatar} />
           <Flex justifyContent="flex-start" flexDirection="column">
-            <Heading size="sm">Samyak Shah</Heading>
+            <Heading size="sm">
+              {userInfo.firstName} {userInfo.lastName}
+            </Heading>
             <Text color="gray.500" fontSize="sm">
-              @SamyakShah
+              @{userInfo.username}
             </Text>
           </Flex>
           <Flex

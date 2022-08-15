@@ -7,3 +7,11 @@ export const followUserService = (followUserId, token) => {
     { headers: { authorization: token } }
   );
 };
+
+export const unfollowUserService = (followUserId, token) => {
+  return axios.post(
+    `/api/users/unfollow/${followUserId}`,
+    {},
+    { headers: { authorization: token } }
+  );
+};
