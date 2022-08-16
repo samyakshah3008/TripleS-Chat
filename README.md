@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+## Preview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![triples-chat](/src/assets/triples-chat.gif)
 
-## Available Scripts
+## Salient Features
 
-In the project directory, you can run:
+- Create a Post
 
-### `yarn start`
+- Like
+- Comment & Replies
+- Edit & Delete Post
+- User Feed
+- Sort by Date, Trending & Recent
+- User Profile
+- Bio
+- Portfolio URL
+- Follow/Unfollow
+- Explore Feed
+- Bookmark Post
+- Authentication
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1. Sign-up
+2. Login
+3. Logout
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Create a Post
 
-### `yarn test`
+You can create a post with a "+" button or "Create new post" button which will open a textbox and will have a "Post" or "Submit" button.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Like:
+  You can give a heart or thumbs up to any post on the user feed.
+- Comment/Replies
+  You can see a comment icon, once clicked it open the same create post component with a "post" button.
 
-### `yarn build`
+## Follow/Unfollow
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+When you click the user profile, you can see a "Follow" button, if you click on it, you can follow the user.
+If clicked again on the same button, you will "unfollow" the same user.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Explore Feed
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+When you click on Explore feed you can see all the tweets even of the people whom you don't follow.
 
-### `yarn eject`
+## Bookmark Post
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+For every post on the user feed, you can see a "Bookmark" option where you can bookmark a post which will add it to the bookmark list.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Sign-up Page
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+You can see a sign-up page from where you can sign-up using your email, first name, last name, password & confirm password.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Login Page
 
-## Learn More
+You can see a login page from where you can log in using my email & password.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Logout
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+You can see a logout button from where you can logout from the app
